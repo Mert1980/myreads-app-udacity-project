@@ -1,6 +1,7 @@
 import React from "react";
 // import * as BooksAPI from './BooksAPI'
 import Book from "./components/Book";
+import Search from "./components/Search";
 // import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "./App.css";
@@ -61,14 +62,7 @@ class BooksApp extends React.Component {
         <Route exact path="/">
           <App />
         </Route>
-        <Route
-          path="/search"
-          render={({ history }) => {
-            history.push("/");
-          }}
-        >
-          <Book />
-        </Route>
+        <Route path="/search" render={() => <Search />} />
       </Router>
     );
   }
