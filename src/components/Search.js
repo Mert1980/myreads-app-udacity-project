@@ -1,9 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { search } from "../BooksAPI";
 
 class Search extends React.Component {
-  state = {};
+  state = {
+    query: "",
+  };
+
+  handleInputChange = (event) => {
+    const { value } = event.target;
+    const { query } = this.state;
+    this.setState(() => ({
+      query: value,
+    }));
+    this.searchBooks(query);
+  };
+
+  searchBooks = async (query) => {
+    const books = await search(query);
+    console.log(books);
+  };
+
   render() {
+    const { query } = this.state;
     return (
       <div>
         <div className="search-books">
@@ -19,7 +38,12 @@ class Search extends React.Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-              <input type="text" placeholder="Search by title or author" />
+              <input
+                type="text"
+                placeholder="Search by title or author"
+                value={query}
+                onChange={this.handleInputChange}
+              />
             </div>
           </div>
           <div className="search-books-results">
