@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { search } from "../BooksAPI";
+// import { render } from "react-dom";
+import Book from "./Book";
 
 class Search extends React.Component {
   state = {
     query: "",
+    books: [],
   };
 
   handleInputChange = (event) => {
@@ -13,12 +16,23 @@ class Search extends React.Component {
     this.setState(() => ({
       query: value,
     }));
-    this.searchBooks(query);
+    if (query !== "") {
+      this.searchBooks(query);
+    }
   };
 
   searchBooks = async (query) => {
-    const books = await search(query);
-    console.log(books);
+    try {
+      const books = await search(query);
+      if (books) {
+        console.log(books);
+        this.setState(() => ({
+          books,
+        }));
+      }
+    } catch (e) {
+      throw new Error(e.message);
+    }
   };
 
   render() {
@@ -31,13 +45,6 @@ class Search extends React.Component {
               <button className="close-search">Close</button>
             </Link>
             <div className="search-books-input-wrapper">
-              {/*
-                  NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                  You can find these search terms here:
-                  https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-                  However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                  you don't find a specific author or title. Every search is limited by search terms.
-                */}
               <input
                 type="text"
                 placeholder="Search by title or author"
@@ -48,6 +55,17 @@ class Search extends React.Component {
           </div>
           <div className="search-books-results">
             <ol className="books-grid" />
+            {this.state.books.map((book) => {
+              return (
+                <li key={book.id}>
+                  <Book
+                    title={book.title}
+                    authors={book.authors}
+                    image={book.imageLinks ? book.imageLinks.thumbnail : "" }
+                  />
+                </li>
+              );
+            })}
           </div>
         </div>
       </div>
