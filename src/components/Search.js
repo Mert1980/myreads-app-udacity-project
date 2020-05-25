@@ -1,14 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { search } from "../BooksAPI";
-// import { render } from "react-dom";
 import Book from "./Book";
 
 class Search extends React.Component {
-  state = {
-    query: "",
-    books: [],
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      query: "",
+      books: [],
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
 
   handleInputChange = (event) => {
     const { value } = event.target;
@@ -17,12 +22,14 @@ class Search extends React.Component {
       query: value,
     }));
     if (query !== "") {
+      console.log(query);
       this.searchBooks(query);
     }
   };
 
   searchBooks = async (query) => {
     try {
+      // console.log(query)
       const books = await search(query);
       if (books) {
         console.log(books);
@@ -55,17 +62,18 @@ class Search extends React.Component {
           </div>
           <div className="search-books-results">
             <ol className="books-grid" />
-            {this.state.books.map((book) => {
-              return (
-                <li key={book.id}>
-                  <Book
-                    title={book.title}
-                    authors={book.authors}
-                    image={book.imageLinks ? book.imageLinks.thumbnail : "" }
-                  />
-                </li>
-              );
-            })}
+            {this.state.books.length > 0 &&
+              this.state.books.map((book) => {
+                return (
+                  <li key={book.id}>
+                    <Book
+                      title={book.title}
+                      authors={book.authors}
+                      image={book.imageLinks ? book.imageLinks.thumbnail : ""}
+                    />
+                  </li>
+                );
+              })}
           </div>
         </div>
       </div>
