@@ -2,45 +2,63 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { search } from "../BooksAPI";
 import Book from "./Book";
+import { debounce } from "debounce";
 
 class Search extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    query: "",
+    books: [],
+  };
 
-    this.state = {
-      query: "",
-      books: [],
-    };
+  searchQuery = debounce(function(query, cb) {
+    search(query).then((result) => cb(result));
+  }, 200);
 
-    this.handleInputChange = this.handleInputChange.bind(this);
-  }
+  updateQuery = (event) => {
+    const query = event.target.value;
+    this.setState({ query });
 
-  handleInputChange = (event) => {
-    const { value } = event.target;
-    const { query } = this.state;
-    this.setState(() => ({
-      query: value,
-    }));
-    if (query !== "") {
-      console.log(query);
-      this.searchBooks(query);
+    if (query.length === 0) {
+      this.setState({ books: [] });
+    } else if (query.trim()) {
+      this.searchQuery(query.trim(), (response) => {
+        if (response.error) {
+          this.setState({ books: [] });
+        } else {
+          this.setState({ books: response });
+        }
+      });
     }
   };
 
-  searchBooks = async (query) => {
-    try {
-      // console.log(query)
-      const books = await search(query);
-      if (books) {
-        console.log(books);
-        this.setState(() => ({
-          books,
-        }));
-      }
-    } catch (e) {
-      throw new Error(e.message);
-    }
-  };
+     
+  // handleInputChange = (event) => {
+  //   const { value } = event.target;
+  //   const { query } = this.state;
+  //   console.log(1, query);
+  //   this.setState(() => ({
+  //     query: value,
+  //   }));
+  //   if (query !== "") {
+  //     console.log(2, query);
+  //     setTimeout(() => this.searchBooks(), 200);
+  //   }
+  // };
+
+  // searchBooks = async () => {
+  //   try {
+  //     console.log(3, this.state.query);
+  //     const books = await search(this.state.query);
+  //     if (books) {
+  //       console.log(books);
+  //       this.setState(() => ({
+  //         books,
+  //       }));
+  //     }
+  //   } catch (e) {
+  //     throw new Error(e.message);
+  //   }
+  // };
 
   render() {
     const { query } = this.state;
@@ -56,7 +74,7 @@ class Search extends React.Component {
                 type="text"
                 placeholder="Search by title or author"
                 value={query}
-                onChange={this.handleInputChange}
+                onChange={this.updateQuery}
               />
             </div>
           </div>
