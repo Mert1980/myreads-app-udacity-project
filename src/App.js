@@ -1,8 +1,8 @@
 import React from "react";
-// import * as BooksAPI from './BooksAPI'
-import Book from "./components/Book";
 import Search from "./components/Search";
-// import ReactDOM from "react-dom";
+import CurrentlyReading from "./components/CurrentlyReading";
+import WantToRead from "./components/WantToRead";
+import Read from "./components/Read";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "./App.css";
 
@@ -24,30 +24,9 @@ class BooksApp extends React.Component {
             <h1>MyReads</h1>
           </div>
           <div className="list-books-content">
-            <div>
-              <div className="bookshelf">
-                <h2 className="bookshelf-title">Currently Reading</h2>
-                <div className="bookshelf-books">
-                  <ol className="books-grid">
-                    <li>
-                      <Book />
-                    </li>
-                  </ol>
-                </div>
-              </div>
-            </div>
-            <div className="bookshelf">
-              <h2 className="bookshelf-title">Want to Read</h2>
-              <div className="bookshelf-books">
-                <ol className="books-grid" />
-              </div>
-            </div>
-            <div className="bookshelf">
-              <h2 className="bookshelf-title">Read</h2>
-              <div className="bookshelf-books">
-                <ol className="books-grid" />
-              </div>
-            </div>
+            <CurrentlyReading />
+            <WantToRead />
+            <Read />
           </div>
           <div className="open-search">
             <Link to="/search">

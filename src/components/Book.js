@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 class Book extends Component {
   state = {};
 
@@ -29,10 +28,14 @@ class Book extends Component {
           </div>
         </div>
         <div className="book-title">{this.props.title}</div>
-        {this.props.authors && this.props.authors.map((author, id)=>{
-                return <div key={id} className="book-authors">{author}</div>
-        })
-        }   
+        {this.props.authors &&
+          this.props.authors.map((author, id) => {
+            return (
+              <div key={id} className="book-authors">
+                {author}
+              </div>
+            );
+          })}
       </div>
     );
   }
