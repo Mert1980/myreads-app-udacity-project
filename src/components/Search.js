@@ -20,10 +20,13 @@ class Search extends React.Component {
 
     if (query.length === 0) {
       this.setState({ books: [] });
+
     } else if (query.trim()) {
       this.searchQuery(query.trim(), (response) => {
+
         if (response.error) {
           this.setState({ books: [] });
+
         } else {
           this.setState({ books: response });
         }
@@ -85,6 +88,7 @@ class Search extends React.Component {
                 return (
                   <li key={book.id}>
                     <Book
+                      book={book}
                       title={book.title}
                       authors={book.authors}
                       image={book.imageLinks ? book.imageLinks.thumbnail : ""}

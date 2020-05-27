@@ -1,6 +1,24 @@
 import React, { Component } from "react";
+import { update } from "../BooksAPI";
 class Book extends Component {
-  state = {};
+  state = {
+    shelf: "none",
+  };
+
+  handleSelectShelf = (event) => {
+    this.setState({
+      shelf: event.target.value,
+    });
+    setTimeout(() => this.updateShelf(), 400);
+  };
+
+  updateShelf = async () => {
+    try {
+      await update(this.props.book, this.state.shelf);
+    } catch (e) {
+      throw new Error(e.message);
+    }
+  };
 
   render() {
     return (
@@ -11,12 +29,11 @@ class Book extends Component {
             style={{
               width: 128,
               height: 193,
-              backgroundImage:
-              `url(${this.props.image})`,
+              backgroundImage: `url(${this.props.image})`,
             }}
           />
           <div className="book-shelf-changer">
-            <select>
+            <select value={this.state.shelf} onChange={this.handleSelectShelf}>
               <option value="move" disabled>
                 Move to...
               </option>
