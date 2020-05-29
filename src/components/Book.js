@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { update, get } from "../BooksAPI";
+import { update } from "../BooksAPI";
 class Book extends Component {
   state = {
     shelf: "none",
@@ -28,10 +28,12 @@ class Book extends Component {
   };
 
   handleSelectShelf = async (event) => {
+    this.props.setLoading(true);
     this.setState({ shelf: event.target.value });
     try {
       await update(this.props.book, event.target.value);
-      this.props.getAllBooks();
+      await this.props.getAllBooks();
+      this.props.setLoading(false);
     } catch (e) {
       throw new Error(e.message);
     }

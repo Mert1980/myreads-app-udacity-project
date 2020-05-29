@@ -11,7 +11,7 @@ class BooksApp extends React.Component {
   };
 
   componentDidMount() {
-    this.getAllBooks()
+    this.getAllBooks();
   }
 
   getAllBooks = () => {
@@ -19,7 +19,7 @@ class BooksApp extends React.Component {
       this.setState({ books });
       console.log(books);
     });
-  }
+  };
 
   // onSelectBook = (book) => {
   //   console.log(1, book)
