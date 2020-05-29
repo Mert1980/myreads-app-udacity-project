@@ -31,34 +31,6 @@ class Search extends React.Component {
     }
   };
 
-  // handleInputChange = (event) => {
-  //   const { value } = event.target;
-  //   const { query } = this.state;
-  //   console.log(1, query);
-  //   this.setState(() => ({
-  //     query: value,
-  //   }));
-  //   if (query !== "") {
-  //     console.log(2, query);
-  //     setTimeout(() => this.searchBooks(), 200);
-  //   }
-  // };
-
-  // searchBooks = async () => {
-  //   try {
-  //     console.log(3, this.state.query);
-  //     const books = await search(this.state.query);
-  //     if (books) {
-  //       console.log(books);
-  //       this.setState(() => ({
-  //         books,
-  //       }));
-  //     }
-  //   } catch (e) {
-  //     throw new Error(e.message);
-  //   }
-  // };
-
   render() {
     const { query } = this.state;
     return (
@@ -88,6 +60,7 @@ class Search extends React.Component {
                         title={book.title}
                         authors={book.authors}
                         image={book.imageLinks ? book.imageLinks.thumbnail : ""}
+                        getAllBooks={this.props.getAllBooks}
                       />
                     </li>
                   );

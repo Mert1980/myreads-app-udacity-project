@@ -11,11 +11,27 @@ class BooksApp extends React.Component {
   };
 
   componentDidMount() {
+    this.getAllBooks()
+  }
+
+  getAllBooks = () => {
     getAll().then((books) => {
       this.setState({ books });
-      console.log(books)
+      console.log(books);
     });
   }
+
+  // onSelectBook = (book) => {
+  //   console.log(1, book)
+  //   this.setState((prevState) => (
+  //     {
+  //     books: prevState.books.push(book)
+  //   }));
+  // };
+
+  // onSelectBook = (book) => {
+  //   this.setState({ books: [...this.state.books, book] });
+  // };
 
   render() {
     const App = () => {
@@ -26,19 +42,22 @@ class BooksApp extends React.Component {
           </div>
           <div className="list-books-content">
             <BookShelf
-              title={"Currently Reading"}
+              getAllBooks={this.getAllBooks}
+              shelf={"Currently Reading"}
               books={this.state.books.filter(
                 (book) => book.shelf === "currentlyReading"
               )}
             />
             <BookShelf
-              title={"Want To Read"}
+              getAllBooks={this.getAllBooks}
+              shelf={"Want To Read"}
               books={this.state.books.filter(
                 (book) => book.shelf === "wantToRead"
               )}
             />
             <BookShelf
-              title={"Read"}
+              getAllBooks={this.getAllBooks}
+              shelf={"Read"}
               books={this.state.books.filter((book) => book.shelf === "read")}
             />
           </div>
@@ -55,7 +74,10 @@ class BooksApp extends React.Component {
         <Route exact path="/">
           <App />
         </Route>
-        <Route path="/search" render={() => <Search />} />
+        <Route
+          path="/search"
+          render={() => <Search getAllBooks={this.getAllBooks} />}
+        />
       </Router>
     );
   }

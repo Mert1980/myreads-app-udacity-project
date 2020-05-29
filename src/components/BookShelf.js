@@ -2,18 +2,19 @@ import React from "react";
 import Book from "./Book";
 
 function BookShelf(props) {
-
   return (
     <div>
       <div className="bookshelf">
-        <h2 className="bookshelf-title">{props.title}</h2>
+        <h2 className="bookshelf-title">{props.shelf}</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
-          {props.books.length > 0 &&
+            {props.books.length > 0 &&
               props.books.map((book) => {
                 return (
                   <li key={book.id}>
                     <Book
+                      shelf={props.shelf}
+                      getAllBooks={props.getAllBooks}
                       book={book}
                       title={book.title}
                       authors={book.authors}

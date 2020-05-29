@@ -1,20 +1,37 @@
 import React, { Component } from "react";
-import { update } from "../BooksAPI";
+import { update, get } from "../BooksAPI";
 class Book extends Component {
   state = {
     shelf: "none",
   };
 
-  handleSelectShelf = (event) => {
-    this.setState({
-      shelf: event.target.value,
-    });
-    setTimeout(() => this.updateShelf(), 400);
+  componentDidMount() {
+    if (this.props.shelf) {
+      this.setShelf();
+    }
+  }
+
+  setShelf = () => {
+    switch (this.props.shelf) {
+      case "Currently Reading":
+        this.setState({ shelf: "currentlyReading" });
+        break;
+      case "Want To Read":
+        this.setState({ shelf: "wantToRead" });
+        break;
+      case "Read":
+        this.setState({ shelf: "read" });
+        break;
+      default:
+        this.setState({ shelf: "none" });
+    }
   };
 
-  updateShelf = async () => {
+  handleSelectShelf = async (event) => {
+    this.setState({ shelf: event.target.value });
     try {
-      await update(this.props.book, this.state.shelf);
+      await update(this.props.book, event.target.value);
+      this.props.getAllBooks();
     } catch (e) {
       throw new Error(e.message);
     }
