@@ -28,12 +28,10 @@ class Book extends Component {
   };
 
   handleSelectShelf = async (event) => {
-    this.props.setLoading(true);
     this.setState({ shelf: event.target.value });
     try {
       await update(this.props.book, event.target.value);
       await this.props.getAllBooks();
-      this.props.setLoading(false);
     } catch (e) {
       throw new Error(e.message);
     }
