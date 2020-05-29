@@ -1,24 +1,20 @@
 import React from "react";
 import Search from "./components/Search";
-import CurrentlyReading from "./components/CurrentlyReading";
-import WantToRead from "./components/WantToRead";
-import Read from "./components/Read";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "./App.css";
-import {getAll} from "./BooksAPI"
+import { getAll } from "./BooksAPI";
+import BookShelf from "./components/BookShelf";
 
 class BooksApp extends React.Component {
   state = {
-    books:[]
+    books: [],
   };
 
-  componentDidMount (){
-    getAll().then(books => 
-      {
-      this.setState({books})
+  componentDidMount() {
+    getAll().then((books) => {
+      this.setState({ books });
       console.log(books)
-      })
-    console.log(this.state.books)
+    });
   }
 
   render() {
@@ -29,9 +25,22 @@ class BooksApp extends React.Component {
             <h1>MyReads</h1>
           </div>
           <div className="list-books-content">
-            <CurrentlyReading />
-            <WantToRead />
-            <Read />
+            <BookShelf
+              title={"Currently Reading"}
+              books={this.state.books.filter(
+                (book) => book.shelf === "currentlyReading"
+              )}
+            />
+            <BookShelf
+              title={"Want To Read"}
+              books={this.state.books.filter(
+                (book) => book.shelf === "wantToRead"
+              )}
+            />
+            <BookShelf
+              title={"Read"}
+              books={this.state.books.filter((book) => book.shelf === "read")}
+            />
           </div>
           <div className="open-search">
             <Link to="/search">

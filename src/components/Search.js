@@ -20,13 +20,10 @@ class Search extends React.Component {
 
     if (query.length === 0) {
       this.setState({ books: [] });
-
     } else if (query.trim()) {
       this.searchQuery(query.trim(), (response) => {
-
         if (response.error) {
           this.setState({ books: [] });
-
         } else {
           this.setState({ books: response });
         }
@@ -34,7 +31,6 @@ class Search extends React.Component {
     }
   };
 
-     
   // handleInputChange = (event) => {
   //   const { value } = event.target;
   //   const { query } = this.state;
@@ -82,20 +78,21 @@ class Search extends React.Component {
             </div>
           </div>
           <div className="search-books-results">
-            <ol className="books-grid" />
-            {this.state.books.length > 0 &&
-              this.state.books.map((book) => {
-                return (
-                  <li key={book.id}>
-                    <Book
-                      book={book}
-                      title={book.title}
-                      authors={book.authors}
-                      image={book.imageLinks ? book.imageLinks.thumbnail : ""}
-                    />
-                  </li>
-                );
-              })}
+            <ol className="books-grid">
+              {this.state.books.length > 0 &&
+                this.state.books.map((book) => {
+                  return (
+                    <li key={book.id}>
+                      <Book
+                        book={book}
+                        title={book.title}
+                        authors={book.authors}
+                        image={book.imageLinks ? book.imageLinks.thumbnail : ""}
+                      />
+                    </li>
+                  );
+                })}
+            </ol>
           </div>
         </div>
       </div>
