@@ -2,6 +2,7 @@
     "tags": {
         "allowUnknownTags": true,
         "dictionaries": ["jsdoc","closure"]
+
     },
     "source": {
         "include": ["src"],
@@ -10,7 +11,7 @@
     },
     "plugins": [
         "plugins/markdown",
-        "better-docs/component"
+        "node_modules/better-docs/component"
     ],
      "templates": {
       "better-docs": {

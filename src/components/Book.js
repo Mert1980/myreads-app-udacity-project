@@ -1,5 +1,11 @@
 import React, { Component } from "react";
 import { update } from "../BooksAPI";
+
+/**
+ * Component that renders queried books and also handles the changes in shelf
+ *
+ * @component
+ */
 class Book extends Component {
   state = {
     shelf: "none",
@@ -11,6 +17,14 @@ class Book extends Component {
     }
   }
 
+/**
+ * Sets the state of the shelf depending on the selection of the user
+ * in dropdown select menu
+ * 
+ * @function setShelf
+ * 
+ * @returns new state of shelf
+ */
   setShelf = () => {
     switch (this.props.shelf) {
       case "Currently Reading":
@@ -27,6 +41,14 @@ class Book extends Component {
     }
   };
 
+  /**
+ * Updates the shelf of the book depending on the selection of the user
+ * in dropdown select menu
+ * 
+ * @function handleSelectShelf
+ * 
+ * @returns all books from API
+ */
   handleSelectShelf = async (event) => {
     this.setState({ shelf: event.target.value });
     try {

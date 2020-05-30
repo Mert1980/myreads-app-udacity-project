@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "better-docs": "^2.0.1",
     "debounce": "^1.2.0",
     "jsdoc": "^3.6.4",
     "prop-types": "^15.7.2",
@@ -27,5 +26,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "better-docs": "^2.0.1"
+  }
 }

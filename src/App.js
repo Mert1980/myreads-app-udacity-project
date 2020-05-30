@@ -1,11 +1,16 @@
 import React from "react";
 import Search from "./components/Search";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "./App.css";
 import { getAll } from "./BooksAPI";
 import BookShelf from "./components/BookShelf";
 
+/**
+ * Component that renders bookshelves and links to search page
+ *
+ * @component
+ */
 class BooksApp extends React.Component {
   state = {
     books: [],
@@ -17,7 +22,7 @@ class BooksApp extends React.Component {
 
   /**
    * fetch all books from API
-   * 
+   *
    * @async
    * @function getAllBooks
    * @returns {Array} Array of objects
@@ -79,9 +84,18 @@ class BooksApp extends React.Component {
 }
 
 BooksApp.propTypes = {
-  getAllBooks:PropTypes.func,
-  shelf:PropTypes.string,
-  books:PropTypes.arrayOf(PropTypes.object)
-}
+  /**
+   * API endpoint to fetch books
+   */
+  getAllBooks: PropTypes.func,
+  /**
+   * Shelf's name
+   */
+  shelf: PropTypes.string,
+  /**
+   * Array of book objects
+   */
+  books: PropTypes.arrayOf(PropTypes.object),
+};
 
 export default BooksApp;

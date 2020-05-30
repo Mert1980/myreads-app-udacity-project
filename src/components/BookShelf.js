@@ -2,6 +2,11 @@ import React from "react";
 import Book from "./Book";
 import PropTypes from "prop-types";
 
+/**
+ * Component that renders books in accordance with their shelves
+ *
+ * @component
+ */
 function BookShelf(props) {
   return (
     <div>
@@ -32,12 +37,26 @@ function BookShelf(props) {
 }
 
 BookShelf.propTypes = {
-  shelf: PropTypes.string,
-  getAllBooks: PropTypes.func,
+  /**
+   * book object
+   */
   book: PropTypes.object,
+  /**
+   * Book's title
+   */
   title: PropTypes.string,
+  /**
+   * Book's authors
+   */
   authors: PropTypes.array,
+  /**
+   * Book's cover image link
+   */
   image: PropTypes.string,
+  /**
+   * Function to fetch all books from API
+   */
+  getAllBooks: PropTypes.func,
 };
 
 export default BookShelf;
