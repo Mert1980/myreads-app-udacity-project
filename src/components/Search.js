@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { search } from "../BooksAPI";
 import Book from "./Book";
 import { debounce } from "debounce";
+import PropTypes from "prop-types";
 
 class Search extends React.Component {
   state = {
@@ -72,5 +73,13 @@ class Search extends React.Component {
     );
   }
 }
+
+Search.propTypes = {
+  book: PropTypes.object,
+  title: PropTypes.string,
+  authors: PropTypes.array,
+  image: PropTypes.string,
+  getAllBooks: PropTypes.func,
+};
 
 export default Search;
