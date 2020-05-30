@@ -1,5 +1,6 @@
 import React from "react";
 import Search from "./components/Search";
+import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "./App.css";
 import { getAll } from "./BooksAPI";
@@ -75,6 +76,12 @@ class BooksApp extends React.Component {
       </Router>
     );
   }
+}
+
+BooksApp.propTypes = {
+  getAllBooks:PropTypes.func,
+  shelf:PropTypes.string,
+  books:PropTypes.arrayOf(PropTypes.object)
 }
 
 export default BooksApp;

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>MyReads Project</h1>
+<p>This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.</p>
+<p>Of course, you are free to start this project from scratch if you wish! Just be sure to use <a href="https://github.com/facebookincubator/create-react-app">Create React App</a> to bootstrap the project.</p>
+<h2>TL;DR</h2>
+<p>To get started developing right away:</p>
+<ul>
+<li>install all project dependencies with <code>npm install</code></li>
+<li>start the development server with <code>npm start</code></li>
+</ul>
+<h2>What You're Getting</h2>
+<pre class="prettyprint source lang-bash"><code>├── CONTRIBUTING.md
+├── README.md - This file.
+├── SEARCH_TERMS.md # The whitelisted short collection of available search terms for you to use with your app.
+├── package.json # npm package manager file. It's unlikely that you'll need to modify this.
+├── public
+│   ├── favicon.ico # React Icon, You may change if you wish.
+│   └── index.html # DO NOT MODIFY
+└── src
+    ├── App.css # Styles for your app. Feel free to customize this as you desire.
+    ├── App.js # This is the root of your app. Contains static HTML right now.
+    ├── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
+    ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
+    ├── icons # Helpful images for your app. Use at your discretion.
+    │   ├── add.svg
+    │   ├── arrow-back.svg
+    │   └── arrow-drop-down.svg
+    ├── index.css # Global styles. You probably won't need to change anything here.
+    └── index.js # You should not need to modify this file. It is used for DOM rendering only.
+</code></pre>
+<p>Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.</p>
+<h2>Backend Server</h2>
+<p>To simplify your development process, we've provided a backend server for you to develop against. The provided file <a href="src/BooksAPI.js"><code>BooksAPI.js</code></a> contains the methods you will need to perform necessary operations on the backend:</p>
+<ul>
+<li><a href="#getall"><code>getAll</code></a></li>
+<li><a href="#update"><code>update</code></a></li>
+<li><a href="#search"><code>search</code></a></li>
+</ul>
+<h3><code>getAll</code></h3>
+<p>Method Signature:</p>
+<pre class="prettyprint source lang-js"><code>getAll()
+</code></pre>
+<ul>
+<li>Returns a Promise which resolves to a JSON object containing a collection of book objects.</li>
+<li>This collection represents the books currently in the bookshelves in your app.</li>
+</ul>
+<h3><code>update</code></h3>
+<p>Method Signature:</p>
+<pre class="prettyprint source lang-js"><code>update(book, shelf)
+</code></pre>
+<ul>
+<li>book: <code>&lt;Object&gt;</code> containing at minimum an <code>id</code> attribute</li>
+<li>shelf: <code>&lt;String&gt;</code> contains one of [&quot;wantToRead&quot;, &quot;currentlyReading&quot;, &quot;read&quot;]</li>
+<li>Returns a Promise which resolves to a JSON object containing the response data of the POST request</li>
+</ul>
+<h3><code>search</code></h3>
+<p>Method Signature:</p>
+<pre class="prettyprint source lang-js"><code>search(query)
+</code></pre>
+<ul>
+<li>query: <code>&lt;String&gt;</code></li>
+<li>Returns a Promise which resolves to a JSON object containing a collection of a maximum of 20 book objects.</li>
+<li>These books do not know which shelf they are on. They are raw results only. You'll need to make sure that books have the correct state while on the search page.</li>
+</ul>
+<h2>Important</h2>
+<p>The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in <a href="SEARCH_TERMS.md">SEARCH_TERMS.md</a>. That list of terms are the <em>only</em> terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.</p>
+<h2>Create React App</h2>
+<p>This project was bootstrapped with <a href="https://github.com/facebookincubator/create-react-app">Create React App</a>. You can find more information on how to perform common tasks <a href="https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md">here</a>.</p>
+<h2>Contributing</h2>
+<p>This repository is the starter code for <em>all</em> Udacity students. Therefore, we most likely will not accept pull requests.</p>
+<p>For details, check out <a href="CONTRIBUTING.md">CONTRIBUTING.md</a>.</p></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#getAllBooks">getAllBooks</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Sat May 30 2020 10:38:29 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
