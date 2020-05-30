@@ -14,6 +14,13 @@ class BooksApp extends React.Component {
     this.getAllBooks();
   }
 
+  /**
+   * fetch all books from API
+   * 
+   * @async
+   * @function getAllBooks
+   * @returns {Array} Array of objects
+   */
   getAllBooks = () => {
     getAll().then((books) => {
       this.setState({ books });
