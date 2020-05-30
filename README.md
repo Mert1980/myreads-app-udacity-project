@@ -39,7 +39,7 @@ _Note: The backend API is limited to a fixed set of [search terms](#search-terms
 ![Search Screen](src/screenshots/search-books.png "search")
 
 ### Resources and Documentation:
-- [MyReads App Documentation](https://mert1980.github.io/myreads-app-udacity-project/docs/index.html)
+- [MyReads App Documentation](https://mert1980.github.io/myreads-app-udacity-project/docs/global.html)
 - [Create-react-app Documentation](https://github.com/facebookincubator/create-react-app)
 - [React Router Documentation](http://knowbody.github.io/react-router-docs/)
 - [React Training/React Router](https://reacttraining.com/react-router/web/api/BrowserRouter)
