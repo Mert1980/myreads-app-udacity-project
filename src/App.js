@@ -17,21 +17,8 @@ class BooksApp extends React.Component {
   getAllBooks = () => {
     getAll().then((books) => {
       this.setState({ books });
-      console.log(books);
     });
   };
-
-  // onSelectBook = (book) => {
-  //   console.log(1, book)
-  //   this.setState((prevState) => (
-  //     {
-  //     books: prevState.books.push(book)
-  //   }));
-  // };
-
-  // onSelectBook = (book) => {
-  //   this.setState({ books: [...this.state.books, book] });
-  // };
 
   render() {
     const App = () => {
