@@ -15,6 +15,15 @@ class Book extends Component {
     this.getShelf();
   }
 
+/**
+   * Fetches the current book from API and updates the 
+   * state of the shelf accordingly. This function only 
+   * handles the books that is fetched in the main page. 
+   * For the rest of the books coming from search function, it 
+   * sets none as a default shelf state
+   *
+   * @function getShelf
+   */
   getShelf = async () => {
     const currentBook = await get(this.props.book.id);
     if (currentBook.shelf) {
