@@ -29,7 +29,7 @@ class Search extends React.Component {
    */
   searchQuery = debounce(function(query, cb) {
     search(query).then((result) => cb(result));
-  }, 200);
+  }, 300);
 
   /**
    * Update the state of the query in accordance with the user input
