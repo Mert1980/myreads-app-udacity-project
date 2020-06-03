@@ -31,9 +31,11 @@ class BooksApp extends React.Component {
     getAll().then((books) => {
       this.setState({ books });
     });
+
   };
 
   render() {
+    const booksOnMainPage = this.state.books
     const App = () => {
       return (
         <div className="list-books">
@@ -76,7 +78,9 @@ class BooksApp extends React.Component {
         </Route>
         <Route
           path="/search"
-          render={() => <Search getAllBooks={this.getAllBooks} />}
+          render={() => (
+            <Search booksOnMainPage={booksOnMainPage} getAllBooks={this.getAllBooks} />
+          )}
         />
       </Router>
     );

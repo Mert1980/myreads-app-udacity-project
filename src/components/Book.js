@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { update } from "../BooksAPI";
+import { update, get } from "../BooksAPI";
 
 /**
  * Component that renders queried books and also handles the changes in shelf
@@ -8,47 +8,30 @@ import { update } from "../BooksAPI";
  */
 class Book extends Component {
   state = {
-    shelf: "none",
+    shelf: "",
   };
 
   componentDidMount() {
-    if (this.props.shelf) {
-      this.setShelf();
-    }
+    this.getShelf();
   }
 
-/**
- * Sets the state of the shelf depending on the selection of the user
- * in dropdown select menu
- * 
- * @function setShelf
- * 
- * @returns new state of shelf
- */
-  setShelf = () => {
-    switch (this.props.shelf) {
-      case "Currently Reading":
-        this.setState({ shelf: "currentlyReading" });
-        break;
-      case "Want To Read":
-        this.setState({ shelf: "wantToRead" });
-        break;
-      case "Read":
-        this.setState({ shelf: "read" });
-        break;
-      default:
-        this.setState({ shelf: "none" });
+  getShelf = async () => {
+    const currentBook = await get(this.props.book.id);
+    if (currentBook.shelf) {
+      this.setState({ shelf: currentBook.shelf });
+    } else {
+      this.setState({ shelf: "none" });
     }
   };
 
   /**
- * Updates the shelf of the book depending on the selection of the user
- * in dropdown select menu
- * 
- * @function handleSelectShelf
- * 
- * @returns all books from API
- */
+   * Updates the shelf of the book depending on the selection of the user
+   * in dropdown select menu
+   *
+   * @function handleSelectShelf
+   *
+   * @returns all books from API
+   */
   handleSelectShelf = async (event) => {
     this.setState({ shelf: event.target.value });
     try {

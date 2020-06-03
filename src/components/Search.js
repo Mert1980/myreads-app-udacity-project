@@ -38,7 +38,7 @@ class Search extends React.Component {
    * @function updateQuery
    *
    * @param input event
-   * 
+   *
    * @returns new state of books
    */
   updateQuery = (event) => {
@@ -60,6 +60,7 @@ class Search extends React.Component {
 
   render() {
     const { query } = this.state;
+
     return (
       <div>
         <div className="search-books">
